@@ -1,10 +1,19 @@
-import s from './page.module.css'
+import s from "./page.module.css";
 
-export default function Home() {
+type Props = {};
+
+export default function Home({}: Props) {
   return (
     <>
       <h1 className={s.logo}>Garrett Smith</h1>
-      <p className={s.subtitle}>Software Engineer - This portfolio is a work in progress</p>
+      <h3 className={s.subtitle}>Software Engineer</h3>
+      <p className={s.blurb}>
+        This portfolio is a work in progress. You can see my old portfolio{" "}
+        <a href="https://garrettsmith.vercel.app/" target="_blank">
+          here
+        </a>
+        .
+      </p>
     </>
-  )
+  );
 }

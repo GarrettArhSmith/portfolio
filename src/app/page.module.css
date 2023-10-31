@@ -7,16 +7,28 @@
   text-transform: uppercase;
   word-break: break-word;
   font-weight: bold;
+  align-self: center;
 }
 
 .subtitle {
-  align-self: flex-start;
   padding-left: 3vw;
   font-family: var(--logo-font);
+  font-weight: 400;
+}
+
+.blurb {
+  color: var(--light-base);
+  padding-left: 3vw;
+  font-family: var(--logo-font);
+  margin: 0;
 }
 
 @media (min-width: 768px) {
   .subtitle {
+    padding-left: 4vw;
+  }
+
+  .blurb {
     padding-left: 4vw;
   }
 }

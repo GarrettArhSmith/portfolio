@@ -15,6 +15,10 @@
   color: unset;
 }
 
+.navLink:hover {
+  text-decoration: none;
+}
+
 .Home {
   height: fit-content;
   grid-column: 1 / 3;
