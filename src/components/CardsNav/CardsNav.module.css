@@ -40,11 +40,12 @@
 }
 
 @media (min-width: 1200px) {
+  .About { grid-column: 2 / 4; }
+
   .cardsNav {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  .About { grid-column: 2 / 4; }
 
   .Work { grid-column: 4 / 6; }
 
