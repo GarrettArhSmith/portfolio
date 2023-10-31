@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { PiUserListDuotone, PiCodeDuotone, PiHouseDuotone, PiChatTextDuotone } from 'react-icons/pi'
-import CardsNav from '../components/CardsNav/CardsNav'
+import CardsNav from './components/CardsNav/CardsNav'
 
 export const metadata: Metadata = {
   title: 'Garrett Smith',
