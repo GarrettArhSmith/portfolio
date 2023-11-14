@@ -14,13 +14,14 @@
 .card:hover {
   transform: translateY(-4px);
   cursor: pointer;
-  filter: brightness(1.1);
+  filter: brightness(1.2);
   box-shadow: -1px -13px 0px -7px rgba(0,0,0,0.3) inset;
 }
 
 .active {
   box-shadow: -1px -13px 0px -7px rgba(0,0,0,0.3) inset;
   background-color: var(--accent4);
+  /* background-color: var(--dark-gunmetal); */
   color: rgba(0, 0, 0, 0.8);
 }
 

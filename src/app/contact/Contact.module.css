@@ -1,0 +1,16 @@
+
+.contactList {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
+.contactIcon {
+  transform: scale(3);
+  transition: 0.2s;
+}
+
+.contactIcon:hover {
+  transform: scale(4);
+}

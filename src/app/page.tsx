@@ -4,7 +4,7 @@ type Props = {};
 
 export default function Home({}: Props) {
   return (
-    <>
+    <main>
       <h1 className={s.logo}>Garrett Smith</h1>
       <h3 className={s.subtitle}>Software Engineer</h3>
       <p className={s.blurb}>
@@ -14,6 +14,6 @@ export default function Home({}: Props) {
         </a>
         .
       </p>
-    </>
+    </main>
   );
 }

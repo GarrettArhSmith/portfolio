@@ -4,6 +4,8 @@ type Props = {}
 
 export default function page({}: Props) {
   return (
-    <h1>Work</h1>
+    <main className='mainOnRoute'>
+      <h1 className='pageTitle'>Work</h1>
+    </main>
   )
 }

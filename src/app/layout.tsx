@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { PiUserListDuotone, PiCodeDuotone, PiHouseDuotone, PiChatTextDuotone } from 'react-icons/pi'
 import CardsNav from '../components/CardsNav/CardsNav'
+import Cursor from '@/components/Cursor/Cursor'
 
 export const metadata: Metadata = {
   title: 'Garrett Smith',
@@ -35,10 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className='default'>
+        {/* <Cursor /> */}
         <div className='wrapper'>
-          <main className='main'>
-            {children}
-          </main>
+          {children}
           <CardsNav routes={routes} />
         </div>
       </body>

@@ -1,0 +1,24 @@
+.cursorOuter {
+  width: 4rem;
+  height: 4rem;
+  /* background-color: var(--accent3); */
+  border: 3px solid var(--accent3);
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
+
+.cursorInner {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--accent3);
+  border: 10px solid var(--accent2);
+  outline: 10px solid var(--accent1);
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
