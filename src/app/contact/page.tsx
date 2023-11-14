@@ -30,7 +30,7 @@ const contactItems = [
 
 export default function Contact({}: Props) {
   return (
-    <main className='mainOnRoute'>
+    <main className={`mainOnRoute ${s.contactMain}`}>
       <h1 className='pageTitle'>Get in touch</h1>
       <address className={s.contactList}>
         {contactItems.map((item) => (
@@ -42,6 +42,11 @@ export default function Contact({}: Props) {
           />
         ))}
       </address>
+      <div className={s.mobileOnlyContainer}>
+        <p>garrettarhsmith@gmail.com</p>
+        <p>+1(740) 601-4739</p>
+        <p>linkedin.com/in/garrettarhsmith</p>
+      </div>
     </main>
   )
 }
