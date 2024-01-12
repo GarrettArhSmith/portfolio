@@ -1,0 +1,63 @@
+.container {
+  background: var(--ashen-wind);
+  height: 70%;
+  width: 90%;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: black;
+  border: 4px solid transparent;
+  flex-shrink: 0;
+  transition: border 150ms linear 0s;
+}
+
+.container:hover {
+  border: 4px solid white;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* #ddc8c4 */
+.modalContent {
+  background-color: var(--ashen-wind);
+  margin: auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 50rem;
+  height: 70%;
+  border-radius: 1rem;
+  color: black;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 2rem;
+  padding: none;
+  transition: 0.3s ease;
+}
+
+.closeButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
