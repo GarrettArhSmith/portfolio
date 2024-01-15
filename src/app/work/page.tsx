@@ -1,7 +1,6 @@
 import React from 'react'
 import s from './Work.module.css'
-import WorkItems from '../../components/WorkItems/WorkItems'
-
+import WorkItems from '@/components/WorkItems/WorkItems'
 type Props = {}
 
 export default function page({}: Props) {
