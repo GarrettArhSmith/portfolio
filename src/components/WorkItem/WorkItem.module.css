@@ -36,6 +36,7 @@
   height: 70%;
   border-radius: 1rem;
   color: black;
+  overflow: auto;
 }
 
 .topBar {
