@@ -5,11 +5,19 @@ import { IoClose } from "react-icons/io5";
 
 
 type Props = {
-  title: string,
-  description: string,
+  item: {
+    id: number,
+    title: string,
+    jobTitle: string,
+    description: string,
+    achievements: string[],
+    location: string,
+    startDate: string,
+    endDate: string,
+  }
 }
 
-const WorkItem = ({ title, description }: Props) => {
+const WorkItem = ({ item: { achievements, jobTitle, title, description, location, startDate, endDate } }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -18,8 +26,7 @@ const WorkItem = ({ title, description }: Props) => {
         className={s.container}
         onClick={() => setIsModalOpen(true)}
       >
-        <h3>{title}</h3>
-        <p>{description}</p>
+        <h1>{title}</h1>
       </div>
       {isModalOpen && (
         <div className={s.overlay}>
@@ -27,13 +34,20 @@ const WorkItem = ({ title, description }: Props) => {
             <div
               className={s.topBar}
             >
-              <h2>Modal</h2>
+              <h2>{title}</h2>
               <button
                 onClick={() => setIsModalOpen(false)}
                 className={s.closeButton}
               ><IoClose /></button>
             </div>
-            <p>Modal content</p>
+            <p>{location} • {startDate} - {endDate}</p>
+            <h3>{jobTitle}</h3>
+            <p>{description}</p>
+            <ul>
+              {achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}
