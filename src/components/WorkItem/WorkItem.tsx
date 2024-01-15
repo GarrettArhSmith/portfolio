@@ -7,13 +7,13 @@ import { IoClose } from "react-icons/io5";
 type Props = {
   item: {
     id: number,
-    title: string,
-    jobTitle: string,
-    description: string,
-    achievements: string[],
-    location: string,
-    startDate: string,
-    endDate: string,
+    title?: string,
+    jobTitle?: string,
+    description?: string,
+    achievements?: string[],
+    location?: string,
+    startDate?: string,
+    endDate?: string,
   }
 }
 
@@ -44,7 +44,7 @@ const WorkItem = ({ item: { achievements, jobTitle, title, description, location
             <h3>{jobTitle}</h3>
             <p>{description}</p>
             <ul>
-              {achievements.map((achievement, index) => (
+              {achievements && achievements.map((achievement, index) => (
                 <li key={index}>{achievement}</li>
               ))}
             </ul>
