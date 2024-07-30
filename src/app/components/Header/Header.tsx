@@ -93,22 +93,30 @@ export default function Header({}: Props) {
                 open ? "opacity-100" : "opacity-0"
               }`}
             >
-              <Btn
-                variant="outlined"
-                onClick={() => true}
-                className="flex justify-center"
+              <Link
+                href="/Garrett_Smith_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <DocumentTextIcon className="size-4 text-slate-400" /> get my
-                resume
-              </Btn>
-              <Btn
-                variant="contained"
-                onClick={() => true}
-                className="flex justify-center"
-              >
-                <FireIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
-                hire me
-              </Btn>
+                <Btn
+                  variant="outlined"
+                  onClick={() => true}
+                  className="flex justify-center"
+                >
+                  <DocumentTextIcon className="size-4 text-slate-400" /> get my
+                  resume
+                </Btn>
+              </Link>
+              <Link href="/hire-me">
+                <Btn
+                  variant="contained"
+                  onClick={() => true}
+                  className="flex justify-center"
+                >
+                  <FireIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
+                  hire me
+                </Btn>
+              </Link>
             </div>
           </>
         )}
