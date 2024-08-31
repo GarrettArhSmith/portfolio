@@ -19,9 +19,11 @@ export default function Header({}: Props) {
     <header className="px-5">
       <div className={`h-14 flex items-center justify-between`}>
         <div className="flex items-center">
-          <h1 className="text-nowrap text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-rose-500 to-yellow-500 font-bold text-2xl">
-            garrett smith
-          </h1>
+          <Link href="/">
+            <h1 className="text-nowrap text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-rose-500 to-yellow-500 font-bold text-2xl">
+              garrett smith
+            </h1>
+          </Link>
           <div className="w-9 h-px bg-gray-500 -rotate-45 hidden md:block"></div>
           <h3 className="text-nowrap text-lg text-gray-500 hidden md:block">
             software engineer
@@ -101,7 +103,7 @@ export default function Header({}: Props) {
                 <Btn
                   variant="outlined"
                   onClick={() => true}
-                  className="flex justify-center"
+                  className="flex justify-center w-full"
                 >
                   <DocumentTextIcon className="size-4 text-slate-400" /> get my
                   resume
@@ -111,7 +113,7 @@ export default function Header({}: Props) {
                 <Btn
                   variant="contained"
                   onClick={() => true}
-                  className="flex justify-center"
+                  className="flex justify-center w-full"
                 >
                   <FireIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
                   hire me
