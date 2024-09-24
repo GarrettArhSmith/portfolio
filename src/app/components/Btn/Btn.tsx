@@ -7,7 +7,7 @@ type Props = {
   className?: string;
   variant: "text" | "contained" | "outlined";
   underline?: boolean;
-  onClick: React.MouseEventHandler;
+  onClick?: React.MouseEventHandler;
   disabled?: boolean;
 };
 
