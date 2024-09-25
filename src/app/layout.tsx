@@ -23,7 +23,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <Header />
-        <div className="rounded-3xl bg-slate-200 w-full max-w-full min-h-dvh bg-gradient-to-br from-rose-50 to-slate-200">
+        <div className="rounded-3xl bg-slate-200 w-full max-w-full min-h-dvh bg-gradient-to-br from-rose-50 to-slate-200 overflow-hidden">
           {children}
         </div>
         <footer className="h-14 flex items-center justify-between px-5"></footer>
