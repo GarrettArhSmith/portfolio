@@ -27,13 +27,13 @@ export default function page({}: Props) {
     },
   ];
   return (
-    <main className="">
+    <main className="pt-16">
       {workItems.map((item, i) => (
         <section
           key={i}
-          className="flex flex-col md:flex-row gap-4 items-center md:h-screen"
+          className="flex flex-col md:flex-row gap-4 items-center md:h-screen mb-16"
         >
-          <div className="md:w-5/12 p-4 md:px-12 flex flex-col gap-6">
+          <div className="md:w-5/12 h-full p-4 md:px-12 flex flex-col gap-6 justify-center">
             <h2 className="text-2xl font-bold">{item.title}</h2>
             <p className="text-lg md:w-4/5">{item.description}</p>
             <Link href={item.link} target="_blank" rel="noopener noreferrer">
@@ -42,11 +42,11 @@ export default function page({}: Props) {
                 {item.link}
               </Btn>
             </Link>
-            <div className="absolute w-2/3 mt-[125%] md:mt-0 md:w-4/12 aspect-video bg-rose-500 md:start-1/4 z-10 rounded-md overflow-hidden outline outline-4 outline-white">
+            <div className="relative top-28 md:top-[unset] md:absolute w-2/3 md:w-4/12 aspect-video bg-rose-500 md:start-1/4 z-10 rounded-md overflow-hidden outline outline-4 outline-white">
               <Image
                 src={item.screenshot}
                 fill={true}
-                alt="Express Banner Image"
+                alt={`${item.title} Screenshot`}
                 className="object-cover"
                 quality={100}
                 priority={true}
@@ -54,11 +54,11 @@ export default function page({}: Props) {
               />
             </div>
           </div>
-          <div className="relative rounded-lg md:rounded-none overflow-hidden ml-auto -right-4 md:right-0 w-11/12 md:w-full md:w-7/12 h-80 md:h-full bg-black">
+          <div className="relative -mt-44 md:mt-0 opacity-80 rounded-xl md:rounded-3xl overflow-hidden ml-auto -right-5 w-11/12 md:w-full md:w-7/12 h-80 md:h-full bg-black">
             <Image
               src={item.bannerImage}
               fill={true}
-              alt="Express Banner Image"
+              alt={`${item.title} Banner Image`}
               className="object-cover"
             />
           </div>
