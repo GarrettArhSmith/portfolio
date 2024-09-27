@@ -9,6 +9,7 @@ type Props = {
   underline?: boolean;
   onClick?: React.MouseEventHandler;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 export default function Btn({
@@ -18,6 +19,7 @@ export default function Btn({
   variant,
   onClick,
   disabled = false,
+  type = "button",
 }: Props) {
   const variantStyling = () => {
     let style = "";
@@ -31,6 +33,7 @@ export default function Btn({
 
   return (
     <button
+      type={type}
       disabled={disabled}
       onClick={onClick}
       className={twMerge(

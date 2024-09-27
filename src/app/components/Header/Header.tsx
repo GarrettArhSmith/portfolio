@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
 import {
@@ -15,6 +16,7 @@ type Props = {};
 
 export default function Header({}: Props) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   return (
     <header className="px-5">
       <div className={`h-14 flex items-center justify-between`}>
@@ -33,7 +35,12 @@ export default function Header({}: Props) {
               {routes.map(
                 (route) =>
                   route.enabled && (
-                    <li key={route.path} className="hover:text-rose-500">
+                    <li
+                      key={route.path}
+                      className={`${
+                        pathname === route.path && "text-rose-500"
+                      } hover:text-rose-500`}
+                    >
                       <Link href={route.path}>{route.name}</Link>
                     </li>
                   )
@@ -83,7 +90,10 @@ export default function Header({}: Props) {
                 {routes.map(
                   (route) =>
                     route.enabled && (
-                      <li key={route.path} className="hover:text-rose-500">
+                      <li
+                        key={route.path}
+                        className={`${route} hover:text-rose-500`}
+                      >
                         <Link href={route.path}>{route.name}</Link>
                       </li>
                     )
