@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       from: process.env.CONTACT_FROM_EMAIL as string,
       to: process.env.CONTACT_TO_EMAIL as string,
       subject,
-      reply_to: email,
+      replyTo: email,
       text,
       html: `
         <h2>New contact form submission</h2>
