@@ -32,6 +32,8 @@ const defaultFormState: ContactFormState = {
   details: "",
 };
 
+const contactFormEnabled = false;
+
 export default function ContactPage({}: Props) {
   const [form, setForm] = useState<ContactFormState>(defaultFormState);
   const [status, setStatus] = useState<FormStatus>({ state: "idle" });
@@ -48,6 +50,15 @@ export default function ContactPage({}: Props) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!contactFormEnabled) {
+      setStatus({
+        state: "error",
+        message: "Contact form is a WIP right now. Please email me directly.",
+      });
+      return;
+    }
+
     setStatus({ state: "submitting" });
 
     try {
@@ -99,7 +110,11 @@ export default function ContactPage({}: Props) {
           left={
             <ContactFormCard
               title="Send a quick note."
-              description="I respond within 1–2 business days."
+              description={
+                contactFormEnabled
+                  ? "I respond within 1–2 business days."
+                  : "Form submissions are temporarily disabled while this feature is in progress."
+              }
             >
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <div className="grid gap-5 md:grid-cols-2">
@@ -152,10 +167,17 @@ export default function ContactPage({}: Props) {
                 </label>
 
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
-                  <Btn type="submit" variant="contained" className="px-6 py-3">
+                  <Btn
+                    type="submit"
+                    variant="contained"
+                    className="px-6 py-3"
+                    disabled={!contactFormEnabled}
+                  >
                     {status.state === "submitting"
                       ? "Sending..."
-                      : "Send inquiry"}
+                      : contactFormEnabled
+                        ? "Send inquiry"
+                        : "WIP"}
                   </Btn>
                   <p className="text-sm text-slate-500">
                     Or email me directly.

@@ -1,18 +1,13 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const requiredEnv = [
   "RESEND_API_KEY",
   "CONTACT_TO_EMAIL",
   "CONTACT_FROM_EMAIL",
 ] as const;
 
-function assertEnv() {
-  const missing = requiredEnv.filter((key) => !process.env[key]);
-  if (missing.length > 0) {
-    throw new Error(`Missing env vars: ${missing.join(", ")}`);
-  }
+function getMissingEnv() {
+  return requiredEnv.filter((key) => !process.env[key]);
 }
 
 type ContactPayload = {
@@ -24,7 +19,19 @@ type ContactPayload = {
 
 export async function POST(req: Request) {
   try {
-    assertEnv();
+    const missingEnv = getMissingEnv();
+    if (missingEnv.length > 0) {
+      return Response.json(
+        {
+          ok: false,
+          message:
+            "Contact form is temporarily unavailable while this feature is in progress.",
+        },
+        { status: 503 },
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY as string);
     const payload = (await req.json()) as ContactPayload;
     const name = payload.name?.trim() ?? "";
     const email = payload.email?.trim() ?? "";
