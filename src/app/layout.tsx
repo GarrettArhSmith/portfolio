@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/components/Header/Header";
+import Footer from "@/app/components/Footer/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -23,10 +24,10 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <Header />
-        <div className="rounded-3xl bg-slate-200 w-full max-w-full min-h-dvh bg-gradient-to-br from-rose-50 to-slate-200 overflow-hidden">
+        <div className="rounded-3xl bg-slate-200 w-full max-w-full bg-gradient-to-br from-rose-50 to-slate-200 overflow-hidden">
           {children}
         </div>
-        <footer className="h-14 flex items-center justify-between px-5"></footer>
+        <Footer />
       </body>
     </html>
   );

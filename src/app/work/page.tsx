@@ -1,69 +1,63 @@
-import Image from "next/image";
-import Link from "next/link";
-import Btn from "@/app/components/Btn/Btn";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+"use client";
+
+import { useState } from "react";
+import { workItems } from "./workItems";
+import PageHero from "@/app/components/PageHero/PageHero";
+import WorkItemCard from "@/app/components/Work/WorkItemCard";
+import SectionCta from "@/app/components/SectionCta/SectionCta";
+import PageLayout from "@/app/components/PageLayout/PageLayout";
+import ImagePreviewModal, {
+  type ImagePreview,
+} from "@/app/components/ImagePreviewModal/ImagePreviewModal";
 
 type Props = {};
 
-export default function page({}: Props) {
-  const workItems = [
-    {
-      title: "Express",
-      description:
-        "Worked on the Express.com eCommerce website as a frontend engineer for 2 years. Touched just about everywhere on the site during my time here, working on new features, redesigns, site maintenance and bug fixes. Worked on cross functional, agile teams consisting of Web, IOS and Android engineers as well as Product team members and UX Designers.",
-      logo: "/express.png",
-      bannerImage: "/0912-hp-fall-outfits-dt.avif",
-      link: "https://express.com",
-      screenshot: "/express-screenshot.png",
-    },
-    {
-      title: "MidCurrent",
-      description:
-        "The goal of this project was to create an online learning for fly fishing, and allow content editors to customize the content of these guides. We set this up with NextJS and SanityCMS.",
-      logo: "/express.png",
-      bannerImage: "/fishing-rods.jpg",
-      link: "https://midcurrent-learn.vercel.app/",
-      screenshot: "/midcurrent-screenshot.png",
-    },
-  ];
+export default function Page({}: Props) {
+  const [activePreview, setActivePreview] = useState<ImagePreview | null>(null);
   return (
-    <main className="pt-16">
-      {workItems.map((item, i) => (
-        <section
-          key={i}
-          className="flex flex-col md:flex-row gap-4 items-center md:h-screen mb-16"
-        >
-          <div className="md:w-5/12 h-full p-4 md:px-12 flex flex-col gap-6 justify-center">
-            <h2 className="text-2xl font-bold">{item.title}</h2>
-            <p className="text-lg md:w-4/5">{item.description}</p>
-            <Link href={item.link} target="_blank" rel="noopener noreferrer">
-              <Btn variant="contained" className="px-4 py-2">
-                <ArrowRightIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
-                {item.link}
-              </Btn>
-            </Link>
-            <div className="relative top-28 md:top-[unset] md:absolute w-2/3 md:w-4/12 aspect-video bg-rose-500 md:start-1/4 z-10 rounded-md overflow-hidden outline outline-4 outline-white">
-              <Image
-                src={item.screenshot}
-                fill={true}
-                alt={`${item.title} Screenshot`}
-                className="object-cover"
-                quality={100}
-                priority={true}
-                unoptimized={true}
-              />
-            </div>
-          </div>
-          <div className="relative -mt-44 md:mt-0 opacity-80 rounded-xl md:rounded-3xl overflow-hidden ml-auto -right-5 w-11/12 md:w-full md:w-7/12 h-80 md:h-full bg-black">
-            <Image
-              src={item.bannerImage}
-              fill={true}
-              alt={`${item.title} Banner Image`}
-              className="object-cover"
-            />
-          </div>
-        </section>
-      ))}
-    </main>
+    <PageLayout bgColor="bg-[#fef1f2]">
+      <PageHero
+        eyebrow="Selected Work"
+        title={
+          <>
+            Work that
+            <span className="block italic text-rose-700">
+              ships and scales.
+            </span>
+          </>
+        }
+        description="End-to-end web delivery with an emphasis on speed, quality, usability, and scale."
+        pills={[
+          "Performance",
+          "Design Systems",
+          "Accessibility",
+          "CMS",
+          "Ecommerce",
+        ]}
+      />
+
+      <section className="mt-12 px-6 md:px-12 lg:px-16 2xl:px-24">
+        {workItems.map((item, i) => (
+          <WorkItemCard
+            key={item.title}
+            item={item}
+            index={i}
+            onPreview={setActivePreview}
+          />
+        ))}
+      </section>
+
+      <SectionCta
+        title="Have a project in mind?"
+        description="I help teams ship modern web products. Let’s talk about your goals, stack, and timeline."
+        href="/contact"
+        ctaLabel="Start a Project"
+      />
+
+      <ImagePreviewModal
+        preview={activePreview}
+        onClose={() => setActivePreview(null)}
+      />
+    </PageLayout>
   );
 }

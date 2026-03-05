@@ -1,111 +1,187 @@
 "use client";
+
 import { useState } from "react";
-import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import Btn from "../components/Btn/Btn";
+import type { ChangeEvent, FormEvent } from "react";
+import PageHero from "@/app/components/PageHero/PageHero";
+import SplitSection from "@/app/components/SplitSection/SplitSection";
+import Btn from "@/app/components/Btn/Btn";
+import ContactFormCard from "@/app/components/ContactFormCard/ContactFormCard";
+import ContactInfoCard from "@/app/components/ContactInfoCard/ContactInfoCard";
+import PageLayout from "@/app/components/PageLayout/PageLayout";
+import { contactSocialLinks } from "@/app/constants/socialLinks";
 
 type Props = {};
 
+type ContactFormState = {
+  name: string;
+  email: string;
+  company: string;
+  details: string;
+};
+
+type FormStatus =
+  | { state: "idle" }
+  | { state: "submitting" }
+  | { state: "success"; message: string }
+  | { state: "error"; message: string };
+
+const defaultFormState: ContactFormState = {
+  name: "",
+  email: "",
+  company: "",
+  details: "",
+};
+
 export default function ContactPage({}: Props) {
-  const [socialLink, setSocialLink] = useState("");
+  const [form, setForm] = useState<ContactFormState>(defaultFormState);
+  const [status, setStatus] = useState<FormStatus>({ state: "idle" });
+
+  const handleChange = (
+    e:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setStatus({ state: "submitting" });
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = (await res.json()) as { message?: string };
+        throw new Error(data.message || "Unable to send message.");
+      }
+
+      setStatus({
+        state: "success",
+        message: "Thanks! Your message has been sent.",
+      });
+      setForm(defaultFormState);
+    } catch (error) {
+      setStatus({
+        state: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+      });
+    }
+  };
+
   return (
-    <div className="min-h-screen p-8 flex flex-col items-center justify-center">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800">Get In Touch</h1>
-        <p className="mt-4 text-gray-600">
-          Whether you have a project in mind or just want to say hello, I&apos;d
-          love to hear from you.
-        </p>
-      </header>
-      <div className="w-full max-w-2xl">
-        {/* <h2 className="text-2xl font-semibold mb-4">Contact Form</h2>
-        <form className="space-y-4">
-          <div>
-            <label className="block text-gray-700">Name</label>
-            <input
-              type="text"
-              className="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Email</label>
-            <input
-              type="email"
-              className="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Your email"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Message</label>
-            <textarea
-              className="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              placeholder="Your message"
-              rows={4}
-            />
-          </div>
-          <div>
-            <Btn
-              type="submit"
-              variant="contained"
-              className="p-2 w-full bg-rose-500 text-white hover:text-white hover:bg-rose-600 flex justify-center"
+    <PageLayout>
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Let&apos;s build a
+            <span className="block italic text-blue-600">
+              thoughtful web experience.
+            </span>
+          </>
+        }
+        description="A short note is enough. I’ll follow up with next steps and availability."
+      />
+
+      <section className="mt-12 px-6 md:px-12 lg:px-16 2xl:px-24">
+        <SplitSection
+          className="items-start"
+          left={
+            <ContactFormCard
+              title="Send a quick note."
+              description="I respond within 1–2 business days."
             >
-              Send
-            </Btn>
-          </div>
-        </form> */}
-        <div className="mt-8 flex flex-col md:flex-row justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">Contact Information</h2>
-            <p className="text-gray-700">
-              Email:{" "}
-              <a
-                href="mailto:garrettarhsmith@gmail.com"
-                className="text-indigo-600"
-              >
-                garrettarhsmith@gmail.com
-              </a>
-            </p>
-            <p className="text-gray-700">
-              Phone:{" "}
-              <a href="tel:+1-740-601-4739" className="text-indigo-600">
-                +1 (740) 601-4739
-              </a>
-            </p>
-          </div>
-          <div>
-            <div className="flex gap-6 md:justify-end">
-              <Link href="https://github.com/garrettarhsmith" target="_blank">
-                <FaGithub
-                  className="text-3xl text-gray-500 hover:text-gray-700 hover:cursor-pointer"
-                  onMouseOver={() =>
-                    setSocialLink("https://github.com/garrettarhsmith")
-                  }
-                  onMouseOut={() => setSocialLink("")}
-                />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/garrettarhsmith"
-                target="_blank"
-              >
-                <FaLinkedin
-                  className="text-3xl text-gray-500 hover:text-gray-700 hover:cursor-pointer"
-                  onMouseOver={() =>
-                    setSocialLink("https://www.linkedin.com/in/garrettarhsmith")
-                  }
-                  onMouseOut={() => setSocialLink("")}
-                />
-              </Link>
-            </div>
-            <p className="mt-4 text-gray-500 h-6">
-              {socialLink.split("garrettarhsmith")[0]}
-              <span className="text-rose-400">
-                {socialLink.length > 1 && "garrettarhsmith"}
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <label className="space-y-2 text-sm text-slate-600">
+                    Name
+                    <input
+                      name="name"
+                      type="text"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                    />
+                  </label>
+                  <label className="space-y-2 text-sm text-slate-600">
+                    Email
+                    <input
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                    />
+                  </label>
+                </div>
+
+                <label className="space-y-2 text-sm text-slate-600">
+                  Company (optional)
+                  <input
+                    name="company"
+                    type="text"
+                    value={form.company}
+                    onChange={handleChange}
+                    placeholder="Studio or startup"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                  />
+                </label>
+
+                <label className="space-y-2 text-sm text-slate-600">
+                  Message
+                  <textarea
+                    name="details"
+                    value={form.details}
+                    onChange={handleChange}
+                    placeholder="What are you looking to build?"
+                    rows={5}
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                  />
+                </label>
+
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <Btn type="submit" variant="contained" className="px-6 py-3">
+                    {status.state === "submitting"
+                      ? "Sending..."
+                      : "Send inquiry"}
+                  </Btn>
+                  <p className="text-sm text-slate-500">
+                    Or email me directly.
+                  </p>
+                </div>
+                {status.state === "success" && (
+                  <p className="text-sm text-emerald-600">{status.message}</p>
+                )}
+                {status.state === "error" && (
+                  <p className="text-sm text-rose-600">{status.message}</p>
+                )}
+              </form>
+            </ContactFormCard>
+          }
+          right={
+            <ContactInfoCard
+              title="Reach me directly."
+              email="garrettarhsmith@gmail.com"
+              phone="+1 (740) 601-4739"
+              phoneHref="tel:+1-740-601-4739"
+              location="Columbus, OH · Remote-friendly"
+              socialLinks={contactSocialLinks}
+            />
+          }
+        />
+      </section>
+    </PageLayout>
   );
 }

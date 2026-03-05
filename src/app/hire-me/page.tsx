@@ -18,6 +18,7 @@ export default function page({}: Props) {
           height={200}
           alt="Picture of Me"
           className="rounded-full shadow-lg"
+          sizes="(min-width: 768px) 250px, 200px"
         />
         <div className="flex flex-col gap-4 items-start max-w-3xl">
           <p className="font-bold">

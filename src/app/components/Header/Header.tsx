@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { FireIcon } from "@heroicons/react/24/solid";
 import {
   DocumentTextIcon,
   Bars3Icon,
   XMarkIcon,
+  CalendarIcon,
 } from "@heroicons/react/24/outline";
 import Btn from "@/app/components/Btn/Btn";
 
@@ -43,7 +43,7 @@ export default function Header({}: Props) {
                     >
                       <Link href={route.path}>{route.name}</Link>
                     </li>
-                  )
+                  ),
               )}
             </ul>
           </nav>
@@ -59,10 +59,10 @@ export default function Header({}: Props) {
               resume
             </Btn>
           </Link>
-          <Link href="/hire-me">
+          <Link href="/contact">
             <Btn variant="contained" onClick={() => true}>
-              <FireIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
-              hire me
+              <CalendarIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
+              schedule a call
             </Btn>
           </Link>
         </div>
@@ -92,11 +92,11 @@ export default function Header({}: Props) {
                     route.enabled && (
                       <li
                         key={route.path}
-                        className={`${route} hover:text-rose-500`}
+                        className={`${pathname === route.path && "text-rose-500"} hover:text-rose-500`}
                       >
                         <Link href={route.path}>{route.name}</Link>
                       </li>
-                    )
+                    ),
                 )}
               </ul>
             </nav>
@@ -119,14 +119,14 @@ export default function Header({}: Props) {
                   resume
                 </Btn>
               </Link>
-              <Link href="/hire-me">
+              <Link href="/contact">
                 <Btn
                   variant="contained"
                   onClick={() => true}
                   className="flex justify-center w-full"
                 >
-                  <FireIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
-                  hire me
+                  <CalendarIcon className="size-4 text-slate-400 group-hover:text-rose-500" />{" "}
+                  schedule a call
                 </Btn>
               </Link>
             </div>

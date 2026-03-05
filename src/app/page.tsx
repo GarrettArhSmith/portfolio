@@ -1,7 +1,5 @@
 "use client";
 import BgParticles from "@/app/components/BgParticles/BgParticles";
-import Btn from "./components/Btn/Btn";
-import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import EmailListForm from "./components/EmailListForm";
 
 export default function Home() {
@@ -24,14 +22,6 @@ export default function Home() {
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 z-10 mt-16">
             <EmailListForm />
-            {/* <Btn
-              variant="text"
-              className="text-slate-900 px-4 py-2 hover:text-slate-700"
-              onClick={() => true}
-            >
-              Take a look
-              <ArrowDownIcon className="size-5 group-hover:translate-y-0.5 stroke-2 transition-all hover:text-slate-700" />
-            </Btn> */}
           </div>
         </div>
       </main>
