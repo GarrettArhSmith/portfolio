@@ -57,21 +57,21 @@ export default function Page() {
               items={[
                 {
                   src: "/picofme1.jpg",
-                  alt: "Garrett Smith",
+                  alt: "Me smiling at dinner at Pelino's Pasta",
                   width: 640,
                   height: 720,
                   imageClassName: "object-[62%_50%]",
                 },
                 {
                   src: "/picofme2.jpg",
-                  alt: "Weekend snapshot",
+                  alt: "Me wearing my Digital Tech Data hat at work at Bath & Body Works",
                   width: 520,
                   height: 360,
                   imageClassName: "object-[50%_18%]",
                 },
                 {
                   src: "/picofus.jpg",
-                  alt: "Mood board",
+                  alt: "Me, my son and my girlfriend",
                   width: 520,
                   height: 360,
                 },
