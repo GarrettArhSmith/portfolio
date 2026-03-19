@@ -104,7 +104,7 @@ export default function ContactPage({}: Props) {
         description="A short note is enough. I’ll follow up with next steps and availability."
       />
 
-      <section className="mt-12 px-6 md:px-12 lg:px-16 2xl:px-24">
+      <section className="mt-12 page-container">
         <SplitSection
           className="items-start"
           left={

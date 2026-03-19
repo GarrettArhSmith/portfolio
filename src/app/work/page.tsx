@@ -36,7 +36,7 @@ export default function Page({}: Props) {
         ]}
       />
 
-      <section className="mt-12 px-6 md:px-12 lg:px-16 2xl:px-24">
+      <section className="mt-12 page-container">
         {workItems.map((item, i) => (
           <WorkItemCard
             key={item.title}

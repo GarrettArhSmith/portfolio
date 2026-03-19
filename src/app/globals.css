@@ -45,6 +45,12 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+@layer components {
+  .page-container {
+    @apply w-full px-6 md:px-12 lg:px-16 2xl:px-24 max-w-[2080px] mx-auto;
+  }
+}
+
 #tsparticles {
   height: 100%;
   position: absolute;
