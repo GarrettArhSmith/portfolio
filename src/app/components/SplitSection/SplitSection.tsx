@@ -4,9 +4,15 @@ type Props = {
   left: ReactNode;
   right: ReactNode;
   className?: string;
+  reverseOnMobile?: boolean;
 };
 
-export default function SplitSection({ left, right, className }: Props) {
+export default function SplitSection({
+  left,
+  right,
+  className,
+  reverseOnMobile = false,
+}: Props) {
   return (
     <div
       className={[
@@ -16,8 +22,12 @@ export default function SplitSection({ left, right, className }: Props) {
         .filter(Boolean)
         .join(" ")}
     >
-      <div>{left}</div>
-      <div>{right}</div>
+      <div className={reverseOnMobile ? "order-2 lg:order-1" : undefined}>
+        {left}
+      </div>
+      <div className={reverseOnMobile ? "order-1 lg:order-2" : undefined}>
+        {right}
+      </div>
     </div>
   );
 }

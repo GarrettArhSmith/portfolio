@@ -26,10 +26,16 @@ export default function ContactInfoCard({
   const resolvedPhoneHref = phoneHref ?? `tel:${phone}`;
   return (
     <div className="rounded-[24px] border border-white/60 bg-white/70 p-6 md:p-8">
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-        {eyebrow}
-      </p>
-      <h3 className="mt-3 text-xl font-semibold text-slate-900">{title}</h3>
+      {eyebrow && (
+        <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+          {eyebrow}
+        </p>
+      )}
+      <h3
+        className={`${eyebrow ? "mt-3" : "mt-0"} text-xl font-semibold text-slate-900`}
+      >
+        {title}
+      </h3>
       <div className="mt-5 space-y-3 text-slate-600">
         <p>
           Email:{" "}

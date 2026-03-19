@@ -25,9 +25,11 @@ export default function ContactFormCard({
         .join(" ")}
     >
       <div className="space-y-3">
-        <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-          {eyebrow}
-        </p>
+        {eyebrow && (
+          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+            {eyebrow}
+          </p>
+        )}
         <h2 className="text-2xl md:text-3xl font-semibold text-slate-900">
           {title}
         </h2>

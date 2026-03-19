@@ -107,8 +107,10 @@ export default function ContactPage({}: Props) {
       <section className="mt-12 page-container">
         <SplitSection
           className="items-start"
+          reverseOnMobile
           left={
             <ContactFormCard
+              eyebrow=""
               title="Send a quick note."
               description={
                 contactFormEnabled
@@ -116,9 +118,9 @@ export default function ContactPage({}: Props) {
                   : "Form submissions are temporarily disabled while this feature is in progress."
               }
             >
-              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-                <div className="grid gap-5 md:grid-cols-2">
-                  <label className="space-y-2 text-sm text-slate-600">
+              <form onSubmit={handleSubmit} className="mt-8">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  <label className="flex flex-col gap-2 text-sm text-slate-600">
                     Name
                     <input
                       name="name"
@@ -129,7 +131,7 @@ export default function ContactPage({}: Props) {
                       className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
                     />
                   </label>
-                  <label className="space-y-2 text-sm text-slate-600">
+                  <label className="flex flex-col gap-2 text-sm text-slate-600">
                     Email
                     <input
                       name="email"
@@ -140,33 +142,33 @@ export default function ContactPage({}: Props) {
                       className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
                     />
                   </label>
+
+                  <label className="flex flex-col gap-2 text-sm text-slate-600 md:col-span-2">
+                    Company (optional)
+                    <input
+                      name="company"
+                      type="text"
+                      value={form.company}
+                      onChange={handleChange}
+                      placeholder="Studio or startup"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-2 text-sm text-slate-600 md:col-span-2">
+                    Message
+                    <textarea
+                      name="details"
+                      value={form.details}
+                      onChange={handleChange}
+                      placeholder="What are you looking to build?"
+                      rows={5}
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
+                    />
+                  </label>
                 </div>
 
-                <label className="space-y-2 text-sm text-slate-600">
-                  Company (optional)
-                  <input
-                    name="company"
-                    type="text"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder="Studio or startup"
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
-                  />
-                </label>
-
-                <label className="space-y-2 text-sm text-slate-600">
-                  Message
-                  <textarea
-                    name="details"
-                    value={form.details}
-                    onChange={handleChange}
-                    placeholder="What are you looking to build?"
-                    rows={5}
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-200"
-                  />
-                </label>
-
-                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                <div className="mt-6 flex flex-col md:flex-row md:items-center gap-4">
                   <Btn
                     type="submit"
                     variant="contained"
@@ -184,16 +186,17 @@ export default function ContactPage({}: Props) {
                   </p>
                 </div>
                 {status.state === "success" && (
-                  <p className="text-sm text-emerald-600">{status.message}</p>
+                  <p className="mt-4 text-sm text-emerald-600">{status.message}</p>
                 )}
                 {status.state === "error" && (
-                  <p className="text-sm text-rose-600">{status.message}</p>
+                  <p className="mt-4 text-sm text-rose-600">{status.message}</p>
                 )}
               </form>
             </ContactFormCard>
           }
           right={
             <ContactInfoCard
+              eyebrow=""
               title="Reach me directly."
               email="garrettarhsmith@gmail.com"
               phone="+1 (740) 601-4739"

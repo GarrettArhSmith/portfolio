@@ -45,9 +45,6 @@ export default function WorkItemCard({ item, index, onPreview }: Props) {
           <WorkItemMeta role={item.role} timeframe={item.timeframe} />
 
           <div className="flex flex-col gap-3">
-            <p className="text-xs uppercase tracking-[0.25em] text-slate-600">
-              Project 0{index + 1}
-            </p>
             <h2 className="text-3xl md:text-4xl xl:text-5xl font-semibold tracking-tight">
               {item.title}
             </h2>

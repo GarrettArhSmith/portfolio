@@ -36,6 +36,10 @@ export default function Page({}: Props) {
         ]}
       />
 
+      <div className="page-container mt-10">
+        <div className="h-px w-full bg-slate-300/70" />
+      </div>
+
       <section className="mt-12 page-container">
         {workItems.map((item, i) => (
           <WorkItemCard
